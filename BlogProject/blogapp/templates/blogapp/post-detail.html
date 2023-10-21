@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block css_files %} 
-<link rel="stylesheet" href="{% static "blogapp/post-details.css" %}"/>
+<link rel="stylesheet" href="{% static "blogapp/post-detail.css" %}"/>
 {% endblock %}
 
 {% block content %}
@@ -18,17 +18,15 @@
         
         <address>By Demo</address>
         <div>
-            Last updated on <time>Oct 20</time>
+            Last updated on <time>{{ post.date }}</time>
         </div>
     </article>
 </section>
 
 <main>
     {{ post.content }}
-    <!--<p>this is dumy data</p>
-    <p>this is dumy data</p>
-    <p>this is dumy data</p>
-    <p>this is dumy data</p>
--->
 </main>
 {% endblock %}
+
+
+

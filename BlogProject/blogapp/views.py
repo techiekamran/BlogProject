@@ -1,8 +1,9 @@
-from datetime import date
 from django.shortcuts import render
-#import pdb
+from datetime import date
+# Create your views here.
 
-all_posts = [
+
+data = [
     {
         "slug": "hikeinthemountains",
         "image": "mountains.jpg",
@@ -13,15 +14,6 @@ all_posts = [
         "content": """
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nobis
           aperiam est praesentium, quos iste consequuntur omnis exercitationem quam
-          velit labore vero culpa ad mollitia? Quis architecto ipsam nemo. Odio.
-
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nobis
-          aperiam est praesentium, quos iste consequuntur omnis exercitationem quam
-          velit labore vero culpa ad mollitia? Quis architecto ipsam nemo. Odio.
-
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nobis
-          aperiam est praesentium, quos iste consequuntur omnis exercitationem quam
-          velit labore vero culpa ad mollitia? Quis architecto ipsam nemo. Odio.
         """
     },
     {
@@ -34,15 +26,6 @@ all_posts = [
         "content": """
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nobis
           aperiam est praesentium, quos iste consequuntur omnis exercitationem quam
-          velit labore vero culpa ad mollitia? Quis architecto ipsam nemo. Odio.
-
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nobis
-          aperiam est praesentium, quos iste consequuntur omnis exercitationem quam
-          velit labore vero culpa ad mollitia? Quis architecto ipsam nemo. Odio.
-
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nobis
-          aperiam est praesentium, quos iste consequuntur omnis exercitationem quam
-          velit labore vero culpa ad mollitia? Quis architecto ipsam nemo. Odio.
         """
     },
     {
@@ -55,44 +38,25 @@ all_posts = [
         "content": """
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nobis
           aperiam est praesentium, quos iste consequuntur omnis exercitationem quam
-          velit labore vero culpa ad mollitia? Quis architecto ipsam nemo. Odio.
-
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nobis
-          aperiam est praesentium, quos iste consequuntur omnis exercitationem quam
-          velit labore vero culpa ad mollitia? Quis architecto ipsam nemo. Odio.
-
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nobis
-          aperiam est praesentium, quos iste consequuntur omnis exercitationem quam
-          velit labore vero culpa ad mollitia? Quis architecto ipsam nemo. Odio.
         """
     }
 ]
 
+def get_date(data):
+    return data['date']
 
 
-# Create your views here.
 
-# def home(request):
-#     return render(request,'home.html')
-#     #return render(request,'blogapp/index.html')
-
-def get_date(all_posts):
-    return all_posts['date']
-
-def starting_page(request):
-    sorted_post = sorted(all_posts,key=get_date)
-    latest_post = sorted_post[-3:]
-    #return render(request,'blogapp/index.html')
-    return render(request,'blogapp/index.html',{'posts':latest_post})
+def home(request):
+    sorted_post = sorted(data,key=get_date)
+    latest_post = sorted_post[-2:]
+    return render(request,'blogapp/home.html',{'all_posts':latest_post})
 
 def posts(request):
-    #pdb.set_trace()
-    return render(request,'blogapp/all-posts.html',{'all_posts':all_posts})
-    #return render(request,'blogapp/all-posts.html')
-    
+    return render(request,'blogapp/all-post.html',{'all_posts':data})
+
 
 def post_details(request,slug):
-    identified_post=next(post for post in all_posts if post['slug']==slug)
-    return render(request,'blogapp/post-details.html',{'post':identified_post})
-    
+    single_post= next(post for post in data if post['slug']==slug)
+    return render(request,'blogapp/post-detail.html',{'post':single_post})
 

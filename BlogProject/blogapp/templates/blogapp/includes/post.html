@@ -1,0 +1,24 @@
+{% load static %}
+
+<li>
+    
+    <article class="post">
+  <a href="{% url 'posts-details-page' post.slug %}">Link</a>
+        <a href="{% url 'posts-details-page' post.slug %}">
+        <img src="{% static 'blogapp/images/'|add:post.image %}" alt="Mountain Hiking" />
+       <!--<img src="{% static 'blogapp/images/mountains.jpg' %}" alt="Mountain Hiking" />-->
+        <div class="post__content">
+            {{ post.slug }}
+            <h3>{{ post.title }}
+            <p>{{ post.content }}</p>
+            
+            <!--
+                <h3>Mountain hiking</h3>
+                <p>There is nothing hike</p>
+            -->
+            
+            
+        </div>
+        </a>
+    </article>
+</li>

@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block title %}
+Home
+{% endblock %}
+
+{% block css_files %} 
+<link rel="stylesheet" href="{% static 'blogapp/post.css' %}"/>
+<link rel="stylesheet" href="{% static 'blogapp/index.css' %}"/>
+{% endblock %}
+
+{% block content %}
+
+<section id="welcome">
+    <header>
+        <img src="{% static 'blogapp/images/max.png' %}" alt="Max= The author of this Blog"/>
+        <h2>Demo blog des</h2>
+    </header>
+    <p>Hi, this is the our first blog</p>
+</section>
+
+<section id="latest-posts">
+    <h2>My latest thoughts</h2>
+    <ul>
+        {% for post in posts %}
+          {% include 'blogapp/includes/post.html' %}
+        {% endfor %}
+    </ul>
+
+</section>
+
+<section id="about">
+    <h2>What I do </h2>
+    <p>I love programming</p>
+    <p>My goal is to keep</p>
+</section>
+
+{% endblock %}

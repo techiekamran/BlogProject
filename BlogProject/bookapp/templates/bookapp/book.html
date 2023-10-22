@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <ul>
+            
+            <h1>Welcome Book OutLet </h1>
+            {% for book in all_books %}
+           <li><a href="{{ book.get_absolute_url }}">{{ book.book_title }}</a> Rating: {{ book.rating }}</li>
+            <!--<a href="{% url "book_details" book.id %}"><li>{{ book.book_title }}</li></a>-->
+            {% endfor %}
+<hr>
+            <p>Available Books {{ numbers_of_books }}</p>
+            <p>Average Rating {{ average_rating.rating__avg }}</p>
+        </ul>
+    </body>
+</html>

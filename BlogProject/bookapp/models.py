@@ -13,7 +13,7 @@ class Book(models.Model):
     #to use slug replace id keyword with slug keyword
     slug = models.SlugField(default="",null=False)
 
-
+    #does't required save fun when we use prepopulated_fields on django admin file
     def save(self,*args, **kwargs):
         self.slug = slugify(self.book_title)
         super().save(*args,**kwargs)

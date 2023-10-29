@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from datetime import date
+from blogapp.models import Author, Post, Tag
 # Create your views here.
 
 
@@ -48,15 +49,21 @@ def get_date(data):
 
 
 def home(request):
-    sorted_post = sorted(data,key=get_date)
-    latest_post = sorted_post[-2:]
+    #sorted_post = sorted(data,key=get_date)
+    #latest_post = sorted_post[-2:]
+    latest_post = Post.objects.all().order_by('-Date')[:2]
     return render(request,'blogapp/home.html',{'all_posts':latest_post})
 
 def posts(request):
-    return render(request,'blogapp/all-post.html',{'all_posts':data})
+    posts_data = Post.objects.all()
+    return render(request,'blogapp/all-post.html',{'all_posts':posts_data})
+    #return render(request,'blogapp/all-post.html',{'all_posts':data})
 
 
 def post_details(request,slug):
-    single_post= next(post for post in data if post['slug']==slug)
-    return render(request,'blogapp/post-detail.html',{'post':single_post})
+    single_post = get_object_or_404(Post,slug=slug)
+    #single_post = Post.objects.get(slug=slug)
+    #single_post= next(post for post in data if post['slug']==slug)
+    return render(request,'blogapp/post-detail.html',{'post':single_post,
+                                                      'post_tags':single_post.tag.all()})
 

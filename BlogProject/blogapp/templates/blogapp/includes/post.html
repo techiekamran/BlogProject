@@ -3,9 +3,9 @@
 <li>
     <article class="post">
         <a href="{% url 'post-details' post.slug %}">
-        <img src="{% static 'blogapp/images/'|add:post.image %}" alt="Mountain Hiking" />
+        <img src="{% static 'blogapp/images/'|add:post.image_name %}" alt="Mountain Hiking" />
         <div class="post__content">
-            <h3>{{ post.title }}
+            <h3>{{ post.post_title }} {{ post.Date }}</h3>
             <p>{{ post.content }}</p>
             
         </div>

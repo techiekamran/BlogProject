@@ -11,14 +11,20 @@
 
 {% block content %}
 <section id="summary">
-    {{ post.title }}
+    <h2>{{ post.post_title }}</h2>
+    <div>
+        {% for tag in post_tags %}
+        <span class="tags">{{ tag.caption }}</span>
+        {% endfor %}
+    </div>
     <!--<h2>Post Title</h2>-->
     <article>
-        <img src="{% static 'blogapp/images/mountains.jpg' %}" alt="Post Title"/>
         
-        <address>By Demo</address>
+        <img src="{% static 'blogapp/images/'|add:post.image_name %}" alt="Post Title"/>
+        
+        <address>By <a href="mailto:{{ post.author.author_email }}">{{ post.author }}</a></address>
         <div>
-            Last updated on <time>{{ post.date }}</time>
+            Last updated on <time>{{ post.Date }}</time>
         </div>
     </article>
 </section>

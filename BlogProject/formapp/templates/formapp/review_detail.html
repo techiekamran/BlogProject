@@ -1,0 +1,11 @@
+{% extends "formapp/base.html" %}
+
+{% block title %}
+Review Details
+{% endblock %}
+
+{% block content %}
+<h1>{{ single.username }}</h1>
+<h2> {{ single.review_text }}</h2>
+<h3>{{ single.rating }}</h3>
+{% endblock %}

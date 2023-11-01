@@ -1,24 +1,12 @@
-{% load static %}
-<!DOCTYPE>
-<html>
-    <head>
-        <title>Form</title>
-        <link rel="stylesheet" href="{% static 'formapp/review.css' %}"/>
-        
-    </head>
-    <body>
-        
+{% extends "formapp/base.html" %}
+{% block title %}
+Home!
+{% endblock %}
+
+{% block content %}
+
         <form action="/formapp/" method="POST">
             {% csrf_token %}
-            <!--
-                {% if has_error %}
-            <p> This form is invalid - Please enter a valid username!</p>
-            {% endif %}
-            -->
-            <!--
-                <label for="username">Your Name: </label>
-            <input id="username" name="username" type="text">
-            -->
             {% for field in form %}
             <div class="form-control" {% if field.errors %} errors {% endif%}>
                 {{ field.label }}
@@ -28,5 +16,4 @@
             {% endfor %}
             <button type="submit">Send</button>
         </form>
-    </body>
-</html>
+{% endblock %}

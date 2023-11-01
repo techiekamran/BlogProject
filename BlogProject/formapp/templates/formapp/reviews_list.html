@@ -1,0 +1,15 @@
+{% extends "formapp/base.html" %}
+
+{% block title %}
+Reviews List 
+{% endblock %}
+
+{% block content %}
+<h1> All Reviews </h1>
+<ul>
+    {% for review in Reviews_List %}
+    <li> <a href="{% url 'singlereview' review.id %}"/>{{ review.username }}  Rating: {{ review.rating }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
